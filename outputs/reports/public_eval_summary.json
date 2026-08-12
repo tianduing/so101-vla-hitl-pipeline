@@ -1,0 +1,19 @@
+{
+  "trials": 50,
+  "successes": 31,
+  "success_rate": 0.62,
+  "sources": [
+    {
+      "path": "outputs/eval/eval_so101_green_yellow_50_20260430_201835/results.jsonl",
+      "trials": 4
+    },
+    {
+      "path": "outputs/eval/eval_so101_green_yellow_50_20260430_202609/results.jsonl",
+      "trials": 3
+    },
+    {
+      "path": "outputs/eval/eval_so101_green_yellow_50_20260430_203214/results.jsonl",
+      "trials": 43
+    }
+  ]
+}

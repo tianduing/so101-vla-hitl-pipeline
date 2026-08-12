@@ -1,0 +1,103 @@
+{
+  "dataset_count": 1,
+  "total_episodes": 50,
+  "total_frames": 6916,
+  "datasets": [
+    {
+      "root": "data/lerobot/local/so101_systematic50_eval_labeled",
+      "repo_id": null,
+      "codebase_version": "v3.0",
+      "total_episodes": 50,
+      "total_frames": 6916,
+      "total_tasks": 1,
+      "fps": 30,
+      "total_duration_s": 230.53333333333333,
+      "camera_keys": [
+        "observation.images.camera1"
+      ],
+      "state_dim": 6,
+      "action_dim": 6,
+      "feature_keys": [
+        "action",
+        "episode_index",
+        "frame_index",
+        "index",
+        "observation.images.camera1",
+        "observation.state",
+        "task_index",
+        "timestamp"
+      ],
+      "parquet_files": 3,
+      "video_files": 3,
+      "parquet_bytes": 523380,
+      "video_bytes": 102266670,
+      "video_duration_s": 230.533333,
+      "task_distribution_episodes": {
+        "grasp the green block, ignore the yellow block": 50
+      },
+      "episode_length_distribution": {
+        "min": 91,
+        "median": 145.0,
+        "p95": 155.1,
+        "max": 171
+      },
+      "state_summary": {
+        "min": [
+          -16.30769157409668,
+          -6.109889984130859,
+          -28.263736724853516,
+          14.90109920501709,
+          -96.57142639160156,
+          46.01810073852539
+        ],
+        "max": [
+          13.05494499206543,
+          125.93406677246094,
+          79.25274658203125,
+          38.81318664550781,
+          -95.34066009521484,
+          67.73755645751953
+        ],
+        "mean": [
+          -2.3800785541534424,
+          75.36141967773438,
+          11.460399627685547,
+          26.29640769958496,
+          -95.94300079345703,
+          60.08869552612305
+        ]
+      },
+      "action_summary": {
+        "min": [
+          -16.99482536315918,
+          -7.4806976318359375,
+          -30.949172973632812,
+          14.766179084777832,
+          -96.51551055908203,
+          38.80189514160156
+        ],
+        "max": [
+          13.638301849365234,
+          125.15914154052734,
+          80.32933044433594,
+          40.34318542480469,
+          -95.2821044921875,
+          68.1766128540039
+        ],
+        "mean": [
+          -2.4523515701293945,
+          73.97590637207031,
+          7.916961193084717,
+          25.9526309967041,
+          -95.93799591064453,
+          57.71033477783203
+        ]
+      },
+      "missing_frame_count": 0,
+      "non_monotonic_timestamp_episode_ids": [],
+      "invalid_frame_index_episode_ids": [],
+      "invalid_video_files": [],
+      "issues": []
+    }
+  ]
+}

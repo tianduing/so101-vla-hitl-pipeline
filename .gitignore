@@ -1,0 +1,34 @@
+.conda_env/
+.venv/
+.pytest_cache/
+.tools/
+
+# Rebuilt by scripts; never publish large or machine-local artifacts.
+downloads/
+src/lerobot/
+src/public_so101_reference/
+data/
+models/
+outputs/*
+!outputs/reports/
+!outputs/reports/*.json
+logs/
+backups/
+
+# Local hardware/path configuration and host-identifying manifests.
+configs/project.env
+configs/robot/so101_controller.env
+manifests/system_info.txt
+manifests/artifact_SHA256SUMS
+
+# Defense in depth for accidentally misplaced weights and media.
+*.ckpt
+*.onnx
+*.pt
+*.pth
+*.safetensors
+*.avi
+*.mov
+*.mp4
+*.pyc
+__pycache__/

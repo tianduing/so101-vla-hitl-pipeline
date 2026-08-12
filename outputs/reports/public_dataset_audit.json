@@ -1,0 +1,181 @@
+{
+  "dataset_count": 6,
+  "total_episodes": 160,
+  "total_frames": 23169,
+  "datasets": [
+    {
+      "root": "data/lerobot/local/so101_green_block_grasp_no_board_edge_v1",
+      "repo_id": null,
+      "codebase_version": "v3.0",
+      "total_episodes": 20,
+      "total_frames": 3243,
+      "total_tasks": 1,
+      "fps": 30,
+      "camera_keys": [
+        "observation.images.scene"
+      ],
+      "state_dim": 6,
+      "action_dim": 6,
+      "feature_keys": [
+        "action",
+        "episode_index",
+        "frame_index",
+        "index",
+        "observation.images.scene",
+        "observation.state",
+        "task_index",
+        "timestamp"
+      ],
+      "parquet_files": 1,
+      "video_files": 1,
+      "parquet_bytes": 228478,
+      "video_bytes": 46929416,
+      "issues": []
+    },
+    {
+      "root": "data/lerobot/local/so101_green_block_grasp_no_board_lateral_v1",
+      "repo_id": null,
+      "codebase_version": "v3.0",
+      "total_episodes": 30,
+      "total_frames": 4876,
+      "total_tasks": 1,
+      "fps": 30,
+      "camera_keys": [
+        "observation.images.scene"
+      ],
+      "state_dim": 6,
+      "action_dim": 6,
+      "feature_keys": [
+        "action",
+        "episode_index",
+        "frame_index",
+        "index",
+        "observation.images.scene",
+        "observation.state",
+        "task_index",
+        "timestamp"
+      ],
+      "parquet_files": 1,
+      "video_files": 1,
+      "parquet_bytes": 342876,
+      "video_bytes": 70533907,
+      "issues": []
+    },
+    {
+      "root": "data/lerobot/local/so101_green_block_grasp_no_board_random_v1",
+      "repo_id": null,
+      "codebase_version": "v3.0",
+      "total_episodes": 30,
+      "total_frames": 4879,
+      "total_tasks": 1,
+      "fps": 30,
+      "camera_keys": [
+        "observation.images.scene"
+      ],
+      "state_dim": 6,
+      "action_dim": 6,
+      "feature_keys": [
+        "action",
+        "episode_index",
+        "frame_index",
+        "index",
+        "observation.images.scene",
+        "observation.state",
+        "task_index",
+        "timestamp"
+      ],
+      "parquet_files": 1,
+      "video_files": 1,
+      "parquet_bytes": 341432,
+      "video_bytes": 69705014,
+      "issues": []
+    },
+    {
+      "root": "data/lerobot/local/so101_green_block_grasp_yellow_distractor_v1",
+      "repo_id": null,
+      "codebase_version": "v3.0",
+      "total_episodes": 10,
+      "total_frames": 1208,
+      "total_tasks": 1,
+      "fps": 30,
+      "camera_keys": [
+        "observation.images.scene"
+      ],
+      "state_dim": 6,
+      "action_dim": 6,
+      "feature_keys": [
+        "action",
+        "episode_index",
+        "frame_index",
+        "index",
+        "observation.images.scene",
+        "observation.state",
+        "task_index",
+        "timestamp"
+      ],
+      "parquet_files": 1,
+      "video_files": 1,
+      "parquet_bytes": 91655,
+      "video_bytes": 18746573,
+      "issues": []
+    },
+    {
+      "root": "data/lerobot/local/so101_green_block_grasp_yellow_distractor_v2",
+      "repo_id": null,
+      "codebase_version": "v3.0",
+      "total_episodes": 40,
+      "total_frames": 4860,
+      "total_tasks": 1,
+      "fps": 30,
+      "camera_keys": [
+        "observation.images.scene"
+      ],
+      "state_dim": 6,
+      "action_dim": 6,
+      "feature_keys": [
+        "action",
+        "episode_index",
+        "frame_index",
+        "index",
+        "observation.images.scene",
+        "observation.state",
+        "task_index",
+        "timestamp"
+      ],
+      "parquet_files": 1,
+      "video_files": 1,
+      "parquet_bytes": 358781,
+      "video_bytes": 76821498,
+      "issues": []
+    },
+    {
+      "root": "data/lerobot/local/so101_green_block_grasp_yellow_lcr_supplement_v1",
+      "repo_id": null,
+      "codebase_version": "v3.0",
+      "total_episodes": 30,
+      "total_frames": 4103,
+      "total_tasks": 1,
+      "fps": 30,
+      "camera_keys": [
+        "observation.images.scene"
+      ],
+      "state_dim": 6,
+      "action_dim": 6,
+      "feature_keys": [
+        "action",
+        "episode_index",
+        "frame_index",
+        "index",
+        "observation.images.scene",
+        "observation.state",
+        "task_index",
+        "timestamp"
+      ],
+      "parquet_files": 2,
+      "video_files": 2,
+      "parquet_bytes": 300814,
+      "video_bytes": 31097434,
+      "issues": []
+    }
+  ]
+}

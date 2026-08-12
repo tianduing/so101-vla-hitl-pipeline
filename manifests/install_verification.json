@@ -1,0 +1,23 @@
+{
+  "python": "3.12.13",
+  "lerobot": "0.6.0",
+  "torch": "2.11.0+cu130",
+  "cuda_runtime": "13.0",
+  "cuda_available": true,
+  "gpu_count": 4,
+  "gpus": [
+    "NVIDIA GeForce RTX 4090",
+    "NVIDIA GeForce RTX 4090",
+    "NVIDIA GeForce RTX 4090",
+    "NVIDIA GeForce RTX 4090"
+  ],
+  "ffmpeg": "ffmpeg",
+  "cli": {
+    "lerobot-train": true,
+    "lerobot-record": true,
+    "lerobot-rollout": true,
+    "lerobot-edit-dataset": true,
+    "lerobot-dataset-viz": true
+  },
+  "ffmpeg_version": "ffmpeg version 7.1.1 Copyright (c) 2000-2025 the FFmpeg developers"
+}

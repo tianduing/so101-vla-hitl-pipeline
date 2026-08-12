@@ -1,0 +1,104 @@
+{
+  "dataset_count": 1,
+  "total_episodes": 160,
+  "total_frames": 23169,
+  "datasets": [
+    {
+      "root": "data/lerobot/local/so101_green_block_grasp_train_all_prompt_v2",
+      "repo_id": null,
+      "codebase_version": "v3.0",
+      "total_episodes": 160,
+      "total_frames": 23169,
+      "total_tasks": 2,
+      "fps": 30,
+      "total_duration_s": 772.3,
+      "camera_keys": [
+        "observation.images.scene"
+      ],
+      "state_dim": 6,
+      "action_dim": 6,
+      "feature_keys": [
+        "action",
+        "episode_index",
+        "frame_index",
+        "index",
+        "observation.images.scene",
+        "observation.state",
+        "task_index",
+        "timestamp"
+      ],
+      "parquet_files": 7,
+      "video_files": 7,
+      "parquet_bytes": 1671736,
+      "video_bytes": 313833842,
+      "video_duration_s": 772.4666669999999,
+      "task_distribution_episodes": {
+        "grasp the green block": 80,
+        "grasp the green block, ignore the yellow block": 80
+      },
+      "episode_length_distribution": {
+        "min": 117,
+        "median": 161.0,
+        "p95": 163.0,
+        "max": 164
+      },
+      "state_summary": {
+        "min": [
+          -17.89011001586914,
+          -4.527472496032715,
+          -28.96703338623047,
+          16.395605087280273,
+          -96.74725341796875,
+          56.47058868408203
+        ],
+        "max": [
+          20.703296661376953,
+          127.6043930053711,
+          78.28571319580078,
+          45.58241653442383,
+          -95.42857360839844,
+          65.70135498046875
+        ],
+        "mean": [
+          -0.2464362531900406,
+          75.06646728515625,
+          11.52560806274414,
+          26.33854866027832,
+          -95.95144653320312,
+          61.30955505371094
+        ]
+      },
+      "action_summary": {
+        "min": [
+          -18.68096160888672,
+          -4.880000114440918,
+          -32.05956268310547,
+          15.430000305175781,
+          -96.64604949951172,
+          40.0
+        ],
+        "max": [
+          20.952463150024414,
+          127.02825164794922,
+          78.29000091552734,
+          46.45140838623047,
+          -95.33999633789062,
+          65.69999694824219
+        ],
+        "mean": [
+          -0.29563429951667786,
+          73.07036590576172,
+          8.846708297729492,
+          25.862022399902344,
+          -95.94715118408203,
+          57.24811553955078
+        ]
+      },
+      "missing_frame_count": 0,
+      "non_monotonic_timestamp_episode_ids": [],
+      "invalid_frame_index_episode_ids": [],
+      "invalid_video_files": [],
+      "issues": []
+    }
+  ]
+}

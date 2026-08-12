@@ -1,0 +1,312 @@
+{
+  "scope": {
+    "completed": "public real-SO101 offline pipeline",
+    "not_available": [
+      "private 240-episode dual-camera lab dataset",
+      "attached SO-101 leader/follower and cameras",
+      "physical HITL collection and two-round robot evaluation"
+    ],
+    "claim_policy": "documented 81.7%/88.3% figures are not treated as locally reproduced"
+  },
+  "environment": {
+    "python": "3.12.13",
+    "lerobot": "0.6.0",
+    "torch": "2.11.0+cu130",
+    "cuda_runtime": "13.0",
+    "cuda_available": true,
+    "gpu_count": 4,
+    "gpus": [
+      "NVIDIA GeForce RTX 4090",
+      "NVIDIA GeForce RTX 4090",
+      "NVIDIA GeForce RTX 4090",
+      "NVIDIA GeForce RTX 4090"
+    ],
+    "ffmpeg": "ffmpeg",
+    "cli": {
+      "lerobot-train": true,
+      "lerobot-record": true,
+      "lerobot-rollout": true,
+      "lerobot-edit-dataset": true,
+      "lerobot-dataset-viz": true
+    },
+    "ffmpeg_version": "ffmpeg version 7.1.1 Copyright (c) 2000-2025 the FFmpeg developers"
+  },
+  "training_dataset": {
+    "episodes": 160,
+    "frames": 23169,
+    "audit": {
+      "root": "data/lerobot/local/so101_green_block_grasp_train_all_prompt_v2",
+      "repo_id": null,
+      "codebase_version": "v3.0",
+      "total_episodes": 160,
+      "total_frames": 23169,
+      "total_tasks": 2,
+      "fps": 30,
+      "total_duration_s": 772.3,
+      "camera_keys": [
+        "observation.images.scene"
+      ],
+      "state_dim": 6,
+      "action_dim": 6,
+      "feature_keys": [
+        "action",
+        "episode_index",
+        "frame_index",
+        "index",
+        "observation.images.scene",
+        "observation.state",
+        "task_index",
+        "timestamp"
+      ],
+      "parquet_files": 7,
+      "video_files": 7,
+      "parquet_bytes": 1671736,
+      "video_bytes": 313833842,
+      "video_duration_s": 772.4666669999999,
+      "task_distribution_episodes": {
+        "grasp the green block": 80,
+        "grasp the green block, ignore the yellow block": 80
+      },
+      "episode_length_distribution": {
+        "min": 117,
+        "median": 161.0,
+        "p95": 163.0,
+        "max": 164
+      },
+      "state_summary": {
+        "min": [
+          -17.89011001586914,
+          -4.527472496032715,
+          -28.96703338623047,
+          16.395605087280273,
+          -96.74725341796875,
+          56.47058868408203
+        ],
+        "max": [
+          20.703296661376953,
+          127.6043930053711,
+          78.28571319580078,
+          45.58241653442383,
+          -95.42857360839844,
+          65.70135498046875
+        ],
+        "mean": [
+          -0.2464362531900406,
+          75.06646728515625,
+          11.52560806274414,
+          26.33854866027832,
+          -95.95144653320312,
+          61.30955505371094
+        ]
+      },
+      "action_summary": {
+        "min": [
+          -18.68096160888672,
+          -4.880000114440918,
+          -32.05956268310547,
+          15.430000305175781,
+          -96.64604949951172,
+          40.0
+        ],
+        "max": [
+          20.952463150024414,
+          127.02825164794922,
+          78.29000091552734,
+          46.45140838623047,
+          -95.33999633789062,
+          65.69999694824219
+        ],
+        "mean": [
+          -0.29563429951667786,
+          73.07036590576172,
+          8.846708297729492,
+          25.862022399902344,
+          -95.94715118408203,
+          57.24811553955078
+        ]
+      },
+      "missing_frame_count": 0,
+      "non_monotonic_timestamp_episode_ids": [],
+      "invalid_frame_index_episode_ids": [],
+      "invalid_video_files": [],
+      "issues": []
+    }
+  },
+  "released_physical_evaluation": {
+    "trials": 50,
+    "successes": 31,
+    "success_rate": 0.62,
+    "sources": [
+      {
+        "path": "outputs/eval/eval_so101_green_yellow_50_20260430_201835/results.jsonl",
+        "trials": 4
+      },
+      {
+        "path": "outputs/eval/eval_so101_green_yellow_50_20260430_202609/results.jsonl",
+        "trials": 3
+      },
+      {
+        "path": "outputs/eval/eval_so101_green_yellow_50_20260430_203214/results.jsonl",
+        "trials": 43
+      }
+    ]
+  },
+  "failure_analysis": {
+    "by_phase": {
+      "common_core": {
+        "trials": 12,
+        "successes": 7,
+        "failures": 5,
+        "success_rate": 0.5833333333333334
+      },
+      "common_left_edge": {
+        "trials": 4,
+        "successes": 4,
+        "failures": 0,
+        "success_rate": 1.0
+      },
+      "common_left_outer": {
+        "trials": 8,
+        "successes": 7,
+        "failures": 1,
+        "success_rate": 0.875
+      },
+      "common_right_edge": {
+        "trials": 6,
+        "successes": 4,
+        "failures": 2,
+        "success_rate": 0.6666666666666666
+      },
+      "unseen_high_y": {
+        "trials": 5,
+        "successes": 5,
+        "failures": 0,
+        "success_rate": 1.0
+      },
+      "unseen_left_extreme": {
+        "trials": 5,
+        "successes": 0,
+        "failures": 5,
+        "success_rate": 0.0
+      },
+      "unseen_low_y": {
+        "trials": 5,
+        "successes": 0,
+        "failures": 5,
+        "success_rate": 0.0
+      },
+      "unseen_right_edge_boundary": {
+        "trials": 5,
+        "successes": 4,
+        "failures": 1,
+        "success_rate": 0.8
+      }
+    },
+    "diagnostic_slices": {
+      "target_y_below_45mm": {
+        "trials": 20,
+        "successes": 8,
+        "failures": 12,
+        "success_rate": 0.4
+      },
+      "excluding_unseen_low_y_and_left_extreme": {
+        "trials": 40,
+        "successes": 31,
+        "failures": 9,
+        "success_rate": 0.775
+      }
+    },
+    "yellow_distractor_training_coverage": {
+      "episodes_with_placement_metadata": 80,
+      "target_y_below_22mm": 2,
+      "target_x_below_minus_25mm": 4,
+      "note": "Counts use the saved episode count and the corresponding leading placement plans."
+    }
+  },
+  "risk_dataset": {
+    "episodes": 50,
+    "frames": 6916,
+    "successes": 31,
+    "failures": 19
+  },
+  "risk_model": {
+    "rows": 6916,
+    "episodes": 50,
+    "success_episodes": 31,
+    "failure_episodes": 19,
+    "validation_episodes": 10,
+    "validation_episode_ids": [
+      4,
+      9,
+      11,
+      16,
+      19,
+      23,
+      25,
+      26,
+      29,
+      45
+    ],
+    "device": "cpu",
+    "val_loss": 0.32627853751182556,
+    "val_frame_accuracy": 0.8572404384613037,
+    "val_episode_accuracy": 1.0
+  },
+  "checkpoint_offline_inference": [
+    {
+      "type": "act",
+      "checkpoint": "outputs/train/20260812_141103_act_smoke/checkpoints/000001/pretrained_model",
+      "action_shape": [
+        1,
+        6
+      ],
+      "action": [
+        2.8795573711395264,
+        120.78669738769531,
+        -4.4160003662109375,
+        24.784250259399414,
+        -95.89000701904297,
+        58.522708892822266
+      ],
+      "finite": true
+    },
+    {
+      "type": "diffusion",
+      "checkpoint": "outputs/train/20260812_141257_diffusion_smoke/checkpoints/000001/pretrained_model",
+      "action_shape": [
+        1,
+        6
+      ],
+      "action": [
+        20.95246124267578,
+        122.15513610839844,
+        77.31768798828125,
+        15.752326965332031,
+        -96.49800109863281,
+        40.20268630981445
+      ],
+      "finite": true
+    },
+    {
+      "type": "smolvla",
+      "checkpoint": "outputs/train/20260812_142833_smolvla_smoke/checkpoints/000001/pretrained_model",
+      "action_shape": [
+        1,
+        6
+      ],
+      "action": [
+        -0.10104580223560333,
+        -2.06097412109375,
+        62.23140335083008,
+        20.387372970581055,
+        -95.63948059082031,
+        51.33171463012695
+      ],
+      "finite": true
+    }
+  ],
+  "automated_checks": {
+    "hitl_guard_tests": "5 passed",
+    "checkpoint_count": 3
+  }
+}

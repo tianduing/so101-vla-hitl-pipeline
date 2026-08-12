@@ -1,0 +1,79 @@
+{
+  "evaluation": {
+    "trials": 50,
+    "successes": 31,
+    "failures": 19,
+    "success_rate": 0.62
+  },
+  "by_phase": {
+    "common_core": {
+      "trials": 12,
+      "successes": 7,
+      "failures": 5,
+      "success_rate": 0.5833333333333334
+    },
+    "common_left_edge": {
+      "trials": 4,
+      "successes": 4,
+      "failures": 0,
+      "success_rate": 1.0
+    },
+    "common_left_outer": {
+      "trials": 8,
+      "successes": 7,
+      "failures": 1,
+      "success_rate": 0.875
+    },
+    "common_right_edge": {
+      "trials": 6,
+      "successes": 4,
+      "failures": 2,
+      "success_rate": 0.6666666666666666
+    },
+    "unseen_high_y": {
+      "trials": 5,
+      "successes": 5,
+      "failures": 0,
+      "success_rate": 1.0
+    },
+    "unseen_left_extreme": {
+      "trials": 5,
+      "successes": 0,
+      "failures": 5,
+      "success_rate": 0.0
+    },
+    "unseen_low_y": {
+      "trials": 5,
+      "successes": 0,
+      "failures": 5,
+      "success_rate": 0.0
+    },
+    "unseen_right_edge_boundary": {
+      "trials": 5,
+      "successes": 4,
+      "failures": 1,
+      "success_rate": 0.8
+    }
+  },
+  "diagnostic_slices": {
+    "target_y_below_45mm": {
+      "trials": 20,
+      "successes": 8,
+      "failures": 12,
+      "success_rate": 0.4
+    },
+    "excluding_unseen_low_y_and_left_extreme": {
+      "trials": 40,
+      "successes": 31,
+      "failures": 9,
+      "success_rate": 0.775
+    }
+  },
+  "yellow_distractor_training_coverage": {
+    "episodes_with_placement_metadata": 80,
+    "target_y_below_22mm": 2,
+    "target_x_below_minus_25mm": 4,
+    "note": "Counts use the saved episode count and the corresponding leading placement plans."
+  },
+  "interpretation": "The 62% aggregate result is dominated by two out-of-distribution regions: unseen_low_y and unseen_left_extreme are both 0/5. This is primarily a coverage and generalization gap, not evidence that the full pipeline is only 62% accurate."
+}

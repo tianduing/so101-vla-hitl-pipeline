@@ -1,0 +1,2 @@
+lerobot 30da8e687a6dfc617fcd94afc367ac7071c376ce
+public_so101_reference 648de23235c15085ae0ce5887c7c0c2e8908b0ac

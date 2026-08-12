@@ -1,0 +1,55 @@
+{
+  "checkpoints": [
+    {
+      "type": "act",
+      "checkpoint": "outputs/train/20260812_141103_act_smoke/checkpoints/000001/pretrained_model",
+      "action_shape": [
+        1,
+        6
+      ],
+      "action": [
+        2.8795573711395264,
+        120.78669738769531,
+        -4.4160003662109375,
+        24.784250259399414,
+        -95.89000701904297,
+        58.522708892822266
+      ],
+      "finite": true
+    },
+    {
+      "type": "diffusion",
+      "checkpoint": "outputs/train/20260812_141257_diffusion_smoke/checkpoints/000001/pretrained_model",
+      "action_shape": [
+        1,
+        6
+      ],
+      "action": [
+        20.95246124267578,
+        122.15513610839844,
+        77.31768798828125,
+        15.752326965332031,
+        -96.49800109863281,
+        40.20268630981445
+      ],
+      "finite": true
+    },
+    {
+      "type": "smolvla",
+      "checkpoint": "outputs/train/20260812_142833_smolvla_smoke/checkpoints/000001/pretrained_model",
+      "action_shape": [
+        1,
+        6
+      ],
+      "action": [
+        -0.10104580223560333,
+        -2.06097412109375,
+        62.23140335083008,
+        20.387372970581055,
+        -95.63948059082031,
+        51.33171463012695
+      ],
+      "finite": true
+    }
+  ]
+}
