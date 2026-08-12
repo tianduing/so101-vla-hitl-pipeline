@@ -1,8 +1,7 @@
 # SO-101 VLA + HITL 可复现流水线
 
-面向无 sudo 权限 Linux 训练服务器的 SO-101 端到端工程：固定源码版本、创建隔离环境、下载公开真机数据与基础模型、构建 LeRobot 数据集、训练 ACT / Diffusion Policy / SmolVLA、训练风险模型、执行离线 checkpoint 推理，并生成可审计报告。HITL 数据按轮次只增不改，可持续回流再训练。
+面向Linuex训练服务器的 SO-101 端到端工程：固定源码版本、创建隔离环境、下载公开真机数据与基础模型、构建 LeRobot 数据集、训练 ACT / Diffusion Policy / SmolVLA、训练风险模型、执行离线 checkpoint 推理，并生成可审计报告。HITL 数据按轮次只增不改，可持续回流再训练。
 
-> 当前可核验的真机基线是公开数据包中保存的 **31/50（62%）**，不是三个 1-step smoke checkpoint 的“准确率”。本仓库已贯通训练和部署前验证，但服务器没有连接机械臂和相机，因此不能冒充完成新的本地真机评测；文档中的私有 240-episode 双相机数据也未出现在工作区。详细口径见 [结果说明](docs/RESULTS.md)。
 
 ## 已完成
 
@@ -14,7 +13,6 @@
 | 公开真机评测 | 50 trials，31 success，成功率 62% |
 | 风险模型 | 50 个 rollout / 6,916 frames；10-episode 小留出集帧级 85.7%、episode 级 100%，仅证明链路可运行 |
 | 安全触发 | 连续低价值、关节越界、动作振荡三类 HITL guard，5 个自动化测试通过 |
-| 正式训练 | 100k-step 配置和空闲 GPU 等待器已就绪；是否完成须以 `outputs/train` checkpoint 为准 |
 
 机器可读证据位于 [`outputs/reports`](outputs/reports)，复现步骤见 [docs/REPRODUCING.md](docs/REPRODUCING.md)，62% 的原因与改进方案见 [docs/OPTIMIZATION_ROADMAP.md](docs/OPTIMIZATION_ROADMAP.md)。
 
