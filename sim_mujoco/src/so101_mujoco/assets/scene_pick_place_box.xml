@@ -1,0 +1,55 @@
+<mujoco model="so101_pick_hold_place_box">
+  <include file="../../../vendor/mujoco_menagerie/robotstudio_so101/so101.xml"/>
+  <compiler angle="radian" meshdir="../../../vendor/mujoco_menagerie/robotstudio_so101/assets" autolimits="true"/>
+
+  <visual>
+    <headlight diffuse="0.7 0.7 0.7" ambient="0.35 0.35 0.35" specular="0.1 0.1 0.1"/>
+    <global offwidth="1280" offheight="720" azimuth="145" elevation="-25"/>
+  </visual>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.72 0.78 0.86" rgb2="0.22 0.28 0.36" width="512" height="3072"/>
+    <texture type="2d" name="floor_tex" builtin="checker" rgb1="0.24 0.27 0.30" rgb2="0.18 0.20 0.22" width="512" height="512"/>
+    <material name="floor_mat" texture="floor_tex" texrepeat="8 8" texuniform="true" reflectance="0.08"/>
+    <material name="work_mat" rgba="0.52 0.46 0.36 1"/>
+    <material name="wall_mat" rgba="0.48 0.43 0.35 1"/>
+    <material name="box_blue" rgba="0.08 0.32 0.90 0.82"/>
+    <material name="box_floor" rgba="0.06 0.20 0.58 1"/>
+    <material name="cube_green" rgba="0.05 0.85 0.12 1"/>
+  </asset>
+
+  <worldbody>
+    <light name="key" pos="0.2 -0.3 1.8" dir="0.05 0.1 -1" directional="true" diffuse="0.9 0.9 0.9"/>
+    <light name="fill" pos="-0.4 0.5 1.1" dir="0.3 -0.2 -1" directional="true" diffuse="0.45 0.45 0.5"/>
+    <geom name="floor" type="plane" size="2 2 0.05" pos="0 0 -0.053" material="floor_mat"/>
+    <geom name="work_surface" type="box" size="0.42 0.34 0.008" pos="0.29 0 -0.045" material="work_mat" friction="1.1 0.01 0.001"/>
+    <geom name="back_wall" type="box" size="0.42 0.008 0.22" pos="0.29 0.348 0.167" material="wall_mat"/>
+    <geom name="right_wall" type="box" size="0.008 0.34 0.22" pos="0.718 0 0.167" material="wall_mat"/>
+
+    <!-- Fixed large open-top box. Inner footprint is 140 x 140 mm, leaving
+         45 mm center clearance per side for the 50 mm green cube. -->
+    <geom name="box_floor" type="box" size="0.082 0.082 0.003" pos="0.22 0.20 -0.034"
+      material="box_floor" friction="1.1 0.01 0.001"/>
+    <geom name="box_left_wall" type="box" size="0.006 0.082 0.035" pos="0.144 0.20 0.004"
+      material="box_blue" friction="0.9 0.01 0.001"/>
+    <geom name="box_right_wall" type="box" size="0.006 0.082 0.035" pos="0.296 0.20 0.004"
+      material="box_blue" friction="0.9 0.01 0.001"/>
+    <geom name="box_front_wall" type="box" size="0.070 0.006 0.035" pos="0.22 0.124 0.004"
+      material="box_blue" friction="0.9 0.01 0.001"/>
+    <geom name="box_back_wall" type="box" size="0.070 0.006 0.035" pos="0.22 0.276 0.004"
+      material="box_blue" friction="0.9 0.01 0.001"/>
+    <site name="box_inner_site" type="box" size="0.070 0.070 0.002" pos="0.22 0.20 -0.029"
+      rgba="0.18 0.55 1.0 0.20"/>
+
+    <body name="object" pos="0.299131 0.017283 -0.015">
+      <freejoint name="object_free"/>
+      <geom name="object_geom" type="box" size="0.025 0.025 0.022" mass="0.055" material="cube_green"
+        condim="6" friction="1.2 0.02 0.002" solref="0.008 1"/>
+      <site name="object_site" type="sphere" size="0.005" rgba="1 1 1 0.7"/>
+    </body>
+
+    <camera name="third_person" mode="targetbody" target="base" pos="0.82 -0.72 0.56" fovy="48"/>
+    <body name="policy_view_target" pos="0.36 0.09 0.035"/>
+    <camera name="front" mode="targetbody" target="policy_view_target" pos="0.36 -0.48 0.78" fovy="42"/>
+  </worldbody>
+</mujoco>

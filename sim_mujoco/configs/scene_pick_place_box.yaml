@@ -1,0 +1,64 @@
+scene_xml: src/so101_mujoco/assets/scene_pick_place_box.xml
+physics_timestep: 0.005
+control_hz: 30
+output_fps: 30
+render_width: 640
+render_height: 480
+task_text: pick up the green block, hold it for 3 seconds, and place it in the large blue box
+initial_state_degrees: [-0.3956044, -3.2967033, 78.1977997, 17.2747250, -95.7802200, 65.2941208]
+object:
+  color: green
+  size_m: [0.050, 0.050, 0.044]
+  mass_kg: 0.055
+  initial_xyz: [0.2991310597, 0.0172829341, -0.015]
+  random_xy_m: 0.001
+target:
+  type: fixed_large_open_box
+  center_xyz: [0.22, 0.20, -0.009]
+  # A 50 mm object is fully inside the 140 mm inner footprint when its center
+  # is within 45 mm of the box center on each axis.
+  half_extent_xy_m: [0.045, 0.045]
+  inner_half_extent_xy_m: [0.070, 0.070]
+  wall_top_z_m: 0.039
+  transport_site_xyz: [0.22, 0.20, 0.15]
+  release_site_xyz: [0.22, 0.20, 0.10]
+  retreat_site_xyz: [0.16, 0.05, 0.15]
+success:
+  pick_lift_m: 0.020
+  pick_height_m: 0.022
+  # This is the mandatory intermediate quality gate, not merely the old 0.25 s detector.
+  hold_seconds: 3.0
+  transport_min_lift_m: 0.015
+  place_max_speed_m_s: 0.025
+  final_height_range_m: [-0.016, 0.004]
+  approach_tip_distance_m: 0.030
+  bilateral_contact_frames: 3
+  retreat_clearance_m: 0.120
+expert_source:
+  dataset_root: ../data/lerobot/local/so101_green_block_grasp_train_all_prompt_v2
+  source_episode: 68
+  approach_end_index: 69
+  grasp_end_index: 89
+  lift_end_index: 108
+controller:
+  hold_gripper_degrees: 40.0
+  open_gripper_degrees: 65.7
+  transport_frames: 240
+  lower_frames: 90
+  release_frames: 45
+  settle_frames: 60
+  retreat_up_frames: 60
+  retreat_away_frames: 120
+  ik_damping: 0.003
+  ik_gain: 1.2
+  ik_max_step_rad: 0.008
+  nullspace_gain: 0.03
+limits:
+  max_raw_action_delta_deg: 6.0
+  max_episode_seconds: 45
+seed: 42
+visual_match:
+  robot_white: true
+  hide_policy_group_4: true
+physics_match:
+  disable_camera_mount_collisions: true

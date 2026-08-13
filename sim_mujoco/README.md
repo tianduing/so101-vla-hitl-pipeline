@@ -9,6 +9,7 @@
 | `SCRIPTED_EXPERT` | ground-truth 物体位姿 + IK，验证场景抓取物理 | PASS；不计入 Policy |
 | `POLICY_CLOSED_LOOP` | 仿真新图像/状态 → checkpoint → 动作 → 下一物理状态 | ACT 三专家在开发位置 9/10；单 ACT 在未见位置 9/20 |
 | `RGB_VISUAL_DEMONSTRATION_RETRIEVAL` | RGB 定位 → 最近物理成功示范 → 恢复执行 | 未见 seed 52–71 为 17/20（85%）；不是 ACT/VLA 模型成绩 |
+| `SCRIPTED_SIX_STAGE_TASK_SKELETON` | 接近 → 夹取 → 抬升 → 搬运 → 放入大盒 → 退出 | 固定大盒、方块±1 mm 扰动下 10/10；中间 3 秒保持门 10/10；脚本专家而非 Policy |
 
 ## 最新准确率边界
 
@@ -39,6 +40,40 @@ bash scripts/run_rgb_retrieval_85_eval.sh
 - `outputs/policy_closed_loop_act100k/trial_*.mp4`：ACT 100k 十次完整闭环评测试验；
 - `outputs/policy_closed_loop_act100k/closest_attempt.mp4`：100k 中物体抬升最高的第 4 次试验，不代表成功；
 - `outputs/contact_sheet.png`：四类成果接触表。
+- `outputs/PICK_HOLD_PLACE_BOX_SUCCESS.mp4`：28.13 秒完整抓取、3 秒保持、搬运、放入大盒并退出的物理动画。
+
+## 抓取—保持—搬运—放入大盒
+
+新任务使用真实有底板和四面碰撞墙的 140×140 mm 内腔大盒，不再是地面上的蓝色目标区。方块从桌面静止状态开始，抓取后必须抬升至少 20 mm 并连续保持 3 秒，才允许进入搬运。
+
+10 次±1 mm 初始位置扰动的脚本专家验证结果：
+
+| 阶段/质量门 | 成功数 | 成功率 |
+|---|---:|---:|
+| 接近 approach | 10/10 | 100% |
+| 夹取 grasp | 10/10 | 100% |
+| 抬升 lift | 10/10 | 100% |
+| 稳定保持 3 秒（中间质量门） | 10/10 | 100% |
+| 搬运 transport | 10/10 | 100% |
+| 放置 place | 10/10 | 100% |
+| 退出 retreat | 10/10 | 100% |
+| 全流程 | 10/10 | 100% |
+
+这只证明物理任务、成功判定、数据生成和动画链路已打通。它是使用 ground-truth 位姿与脚本轨迹的参考专家，不能改写成“ACT/VLA 放盒成功率 100%”。10 次样本的 Wilson 95% 区间仍约为 72.2%–100%。详细阈值和证据见 [任务报告](reports/PICK_HOLD_PLACE_BOX_TASK.md)，成功率为何这么高及具体优化见 [从小白到原理的独立说明](problem_records/TASK-EVAL-003_为什么六阶段脚本专家10次全成功_从小白到原理.md)。
+
+一键评测并生成动画：
+
+```bash
+make pick-place-box
+```
+
+构建 10 条、8,140 帧的 LeRobot 脚本专家数据集：
+
+```bash
+make pick-place-box-dataset
+```
+
+数据默认写入 `data/lerobot/local/so101_green_block_pick_hold_place_box_scripted_v1`，包含单相机 AV1 视频、6 维 state/action、阶段边界 manifest 和每条轨迹的 3 秒保持证据。本机审计为 10 episodes、8,140 frames、271.33 秒、53 MB，无缺帧、时间戳、帧号或不可读视频问题。
 
 ## 重要真实性说明
 

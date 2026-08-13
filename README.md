@@ -22,6 +22,8 @@
 
 MuJoCo 真物理仿真、真实轨迹回放、脚本专家和 checkpoint 闭环动画工程位于 [sim_mujoco/README.md](sim_mujoco/README.md)。当前开发位置上的 ACT 三专家为 9/10；单 ACT 在 20 个未见位置上为 9/20；RGB 视觉示范检索恢复系统在同一批未见位置上为 17/20（85%）。三者口径不同，完整排障过程见 [从近似 0% 到完整系统 85% 的学习手册](problem_records/ROBOT-GRASP-001_从0到85准确率学习手册/README.md)。
 
+“抓取—稳定保持 3 秒—搬运—放入固定大盒—退出”六阶段任务骨架也已完成。脚本专家在±1 mm 起点扰动下完成 10/10，并生成 10 episodes / 8,140 frames 的 LeRobot 视频数据集；这只是任务和数据链路验证，不是 ACT/VLA 策略成功率。详见 [大盒任务报告](sim_mujoco/reports/PICK_HOLD_PLACE_BOX_TASK.md)和[为什么这次脚本专家会达到 10/10](sim_mujoco/problem_records/TASK-EVAL-003_为什么六阶段脚本专家10次全成功_从小白到原理.md)。
+
 ## 一键复现
 
 要求：x86_64 Linux、Git、wget/curl、NVIDIA 驱动（GPU 训练时）。不需要 sudo，Miniforge、FFmpeg 和 Python 环境都安装在仓库内部。

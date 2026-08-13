@@ -1,0 +1,1012 @@
+{
+  "task": "pick up the green block, hold it for 3 seconds, and place it in the large blue box",
+  "mode": "SCRIPTED_SIX_STAGE_TASK_SKELETON",
+  "policy_model": false,
+  "stages": [
+    "approach",
+    "grasp",
+    "lift",
+    "transport",
+    "place",
+    "retreat"
+  ],
+  "intermediate_quality_gate": "stable_hold_3s",
+  "uses_existing_local_real_action_dataset": true,
+  "downloaded_new_dataset": false,
+  "source_dataset": "data/lerobot/local/so101_green_block_grasp_train_all_prompt_v2",
+  "source_episode": 68,
+  "object_jitter_m": 0.001,
+  "config": "sim_mujoco/configs/scene_pick_place_box.yaml",
+  "config_sha256": "258e27b426f03f4dab2dcfb8d439211e5166ded6144e5973d83e673bc5def1a9",
+  "scene_xml_sha256": "b41c5e80a1c9cfb1a2cbdff06c30fdd944f85f66e4c374b250e6f8078e2c214a",
+  "metrics": {
+    "trials": 10,
+    "full_successes": 10,
+    "full_success_rate": 1.0,
+    "full_success_wilson_95": [
+      0.7224672001371107,
+      0.9999999999999999
+    ],
+    "stage_metrics": {
+      "approach": {
+        "successes": 10,
+        "trials": 10,
+        "success_rate": 1.0,
+        "wilson_95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ],
+        "conditional_successes": 10,
+        "conditional_trials": 10,
+        "conditional_success_rate": 1.0,
+        "cumulative_pipeline_successes": 10,
+        "cumulative_pipeline_success_rate": 1.0
+      },
+      "grasp": {
+        "successes": 10,
+        "trials": 10,
+        "success_rate": 1.0,
+        "wilson_95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ],
+        "conditional_successes": 10,
+        "conditional_trials": 10,
+        "conditional_success_rate": 1.0,
+        "cumulative_pipeline_successes": 10,
+        "cumulative_pipeline_success_rate": 1.0
+      },
+      "lift": {
+        "successes": 10,
+        "trials": 10,
+        "success_rate": 1.0,
+        "wilson_95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ],
+        "conditional_successes": 10,
+        "conditional_trials": 10,
+        "conditional_success_rate": 1.0,
+        "cumulative_pipeline_successes": 10,
+        "cumulative_pipeline_success_rate": 1.0
+      },
+      "transport": {
+        "successes": 10,
+        "trials": 10,
+        "success_rate": 1.0,
+        "wilson_95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ],
+        "conditional_successes": 10,
+        "conditional_trials": 10,
+        "conditional_success_rate": 1.0,
+        "cumulative_pipeline_successes": 10,
+        "cumulative_pipeline_success_rate": 1.0
+      },
+      "place": {
+        "successes": 10,
+        "trials": 10,
+        "success_rate": 1.0,
+        "wilson_95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ],
+        "conditional_successes": 10,
+        "conditional_trials": 10,
+        "conditional_success_rate": 1.0,
+        "cumulative_pipeline_successes": 10,
+        "cumulative_pipeline_success_rate": 1.0
+      },
+      "retreat": {
+        "successes": 10,
+        "trials": 10,
+        "success_rate": 1.0,
+        "wilson_95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ],
+        "conditional_successes": 10,
+        "conditional_trials": 10,
+        "conditional_success_rate": 1.0,
+        "cumulative_pipeline_successes": 10,
+        "cumulative_pipeline_success_rate": 1.0
+      }
+    },
+    "quality_gates": {
+      "stable_hold_3s": {
+        "successes": 10,
+        "trials": 10,
+        "success_rate": 1.0,
+        "wilson_95": [
+          0.7224672001371107,
+          0.9999999999999999
+        ]
+      }
+    }
+  },
+  "video": "sim_mujoco/outputs/PICK_HOLD_PLACE_BOX_SUCCESS.mp4",
+  "video_reproduction_success": true,
+  "results": [
+    {
+      "seed": 100,
+      "success": true,
+      "mode": "SCRIPTED_PICK_HOLD_PLACE_BOX_EXPERT",
+      "policy_model": false,
+      "uses_ground_truth_for_reference_controller": true,
+      "object_teleport_after_reset": false,
+      "weld_or_constraint_grasp": false,
+      "source_episode": 68,
+      "object_initial_xyz": [
+        0.29980102296100397,
+        0.017476042153935775,
+        -0.015
+      ],
+      "stages": {
+        "approach": {
+          "success": true,
+          "minimum_tip_object_distance_m": 0.02351880955621324,
+          "threshold_m": 0.03,
+          "steps": 70
+        },
+        "grasp": {
+          "success": true,
+          "bilateral_contact_frames": 18,
+          "max_consecutive_bilateral_contact_frames": 18,
+          "required_consecutive_frames": 3,
+          "steps": 20
+        },
+        "lift": {
+          "success": true,
+          "peak_lift_m": 0.07833510089707295,
+          "end_lift_m": 0.07833510089707295,
+          "threshold_m": 0.02,
+          "steps": 19
+        },
+        "transport": {
+          "success": true,
+          "minimum_lift_m": 0.07809179001033517,
+          "required_minimum_lift_m": 0.015,
+          "final_xy_error_m": 0.01472820019771307,
+          "arrival_tolerance_m": 0.045,
+          "steps": 240
+        },
+        "place": {
+          "success": true,
+          "object_fully_in_box": true,
+          "final_object_speed_m_s": 8.373669062269908e-17,
+          "max_speed_m_s": 0.025,
+          "final_object_xyz": [
+            0.217831343410475,
+            0.2059466707120734,
+            -0.009106744011298736
+          ],
+          "steps": 195
+        },
+        "retreat": {
+          "success": true,
+          "object_remained_in_box": true,
+          "final_object_speed_m_s": 1.7821219340194943e-16,
+          "final_gripper_object_clearance_m": 0.22879812948091766,
+          "required_clearance_m": 0.12,
+          "steps": 180
+        }
+      },
+      "quality_gates": {
+        "stable_hold_3s": {
+          "success": true,
+          "duration_seconds": 3.0,
+          "required_seconds": 3.0,
+          "minimum_lift_m": 0.0780656136397056,
+          "required_lift_m": 0.02,
+          "bilateral_contact_fraction": 1.0
+        }
+      },
+      "environment_success_detector": true,
+      "final_object_pose": [
+        0.217831343410475,
+        0.2059466707120734,
+        -0.009106744011298736,
+        0.9311981206243982,
+        1.9388902462885123e-16,
+        -1.327528482651821e-16,
+        0.3645134567414332
+      ],
+      "total_steps": 814,
+      "duration_seconds": 27.133333333333333,
+      "trial_index": 0
+    },
+    {
+      "seed": 101,
+      "success": true,
+      "mode": "SCRIPTED_PICK_HOLD_PLACE_BOX_EXPERT",
+      "policy_model": false,
+      "uses_ground_truth_for_reference_controller": true,
+      "object_teleport_after_reset": false,
+      "weld_or_constraint_grasp": false,
+      "source_episode": 68,
+      "object_initial_xyz": [
+        0.29870878618338237,
+        0.016368837241388424,
+        -0.015
+      ],
+      "stages": {
+        "approach": {
+          "success": true,
+          "minimum_tip_object_distance_m": 0.025341122813580315,
+          "threshold_m": 0.03,
+          "steps": 70
+        },
+        "grasp": {
+          "success": true,
+          "bilateral_contact_frames": 18,
+          "max_consecutive_bilateral_contact_frames": 18,
+          "required_consecutive_frames": 3,
+          "steps": 20
+        },
+        "lift": {
+          "success": true,
+          "peak_lift_m": 0.07901466873154905,
+          "end_lift_m": 0.07901466873154905,
+          "threshold_m": 0.02,
+          "steps": 19
+        },
+        "transport": {
+          "success": true,
+          "minimum_lift_m": 0.07834959183952594,
+          "required_minimum_lift_m": 0.015,
+          "final_xy_error_m": 0.014188805391249268,
+          "arrival_tolerance_m": 0.045,
+          "steps": 240
+        },
+        "place": {
+          "success": true,
+          "object_fully_in_box": true,
+          "final_object_speed_m_s": 1.4031571315073953e-16,
+          "max_speed_m_s": 0.025,
+          "final_object_xyz": [
+            0.21809128795531282,
+            0.20707902906424425,
+            -0.009106744011298736
+          ],
+          "steps": 195
+        },
+        "retreat": {
+          "success": true,
+          "object_remained_in_box": true,
+          "final_object_speed_m_s": 1.2727750129143095e-16,
+          "final_gripper_object_clearance_m": 0.22961094198100984,
+          "required_clearance_m": 0.12,
+          "steps": 180
+        }
+      },
+      "quality_gates": {
+        "stable_hold_3s": {
+          "success": true,
+          "duration_seconds": 3.0,
+          "required_seconds": 3.0,
+          "minimum_lift_m": 0.07821366355448586,
+          "required_lift_m": 0.02,
+          "bilateral_contact_fraction": 1.0
+        }
+      },
+      "environment_success_detector": true,
+      "final_object_pose": [
+        0.21809128795531282,
+        0.20707902906424425,
+        -0.009106744011298731,
+        0.9225732757251074,
+        -1.7883991124795035e-18,
+        9.114638608956646e-17,
+        0.38582191606730387
+      ],
+      "total_steps": 814,
+      "duration_seconds": 27.133333333333333,
+      "trial_index": 1
+    },
+    {
+      "seed": 102,
+      "success": true,
+      "mode": "SCRIPTED_PICK_HOLD_PLACE_BOX_EXPERT",
+      "policy_model": false,
+      "uses_ground_truth_for_reference_controller": true,
+      "object_teleport_after_reset": false,
+      "weld_or_constraint_grasp": false,
+      "source_episode": 68,
+      "object_initial_xyz": [
+        0.3000783684902124,
+        0.01747587750812938,
+        -0.015
+      ],
+      "stages": {
+        "approach": {
+          "success": true,
+          "minimum_tip_object_distance_m": 0.023396639359446077,
+          "threshold_m": 0.03,
+          "steps": 70
+        },
+        "grasp": {
+          "success": true,
+          "bilateral_contact_frames": 18,
+          "max_consecutive_bilateral_contact_frames": 18,
+          "required_consecutive_frames": 3,
+          "steps": 20
+        },
+        "lift": {
+          "success": true,
+          "peak_lift_m": 0.07838280856611722,
+          "end_lift_m": 0.07838280856611722,
+          "threshold_m": 0.02,
+          "steps": 19
+        },
+        "transport": {
+          "success": true,
+          "minimum_lift_m": 0.07815497659254933,
+          "required_minimum_lift_m": 0.015,
+          "final_xy_error_m": 0.014918553573119048,
+          "arrival_tolerance_m": 0.045,
+          "steps": 240
+        },
+        "place": {
+          "success": true,
+          "object_fully_in_box": true,
+          "final_object_speed_m_s": 1.199709343950352e-16,
+          "max_speed_m_s": 0.025,
+          "final_object_xyz": [
+            0.2177369965882572,
+            0.20604083752032368,
+            -0.009106744011298745
+          ],
+          "steps": 195
+        },
+        "retreat": {
+          "success": true,
+          "object_remained_in_box": true,
+          "final_object_speed_m_s": 3.84599178011e-17,
+          "final_gripper_object_clearance_m": 0.2288398909456776,
+          "required_clearance_m": 0.12,
+          "steps": 180
+        }
+      },
+      "quality_gates": {
+        "stable_hold_3s": {
+          "success": true,
+          "duration_seconds": 3.0,
+          "required_seconds": 3.0,
+          "minimum_lift_m": 0.0781120047204746,
+          "required_lift_m": 0.02,
+          "bilateral_contact_fraction": 1.0
+        }
+      },
+      "environment_success_detector": true,
+      "final_object_pose": [
+        0.2177369965882572,
+        0.20604083752032368,
+        -0.009106744011298757,
+        0.9311162087653613,
+        -9.050415764920044e-18,
+        4.302770724811459e-17,
+        0.3647226422563058
+      ],
+      "total_steps": 814,
+      "duration_seconds": 27.133333333333333,
+      "trial_index": 2
+    },
+    {
+      "seed": 103,
+      "success": true,
+      "mode": "SCRIPTED_PICK_HOLD_PLACE_BOX_EXPERT",
+      "policy_model": false,
+      "uses_ground_truth_for_reference_controller": true,
+      "object_teleport_after_reset": false,
+      "weld_or_constraint_grasp": false,
+      "source_episode": 68,
+      "object_initial_xyz": [
+        0.2997115860288374,
+        0.018103612862590907,
+        -0.015
+      ],
+      "stages": {
+        "approach": {
+          "success": true,
+          "minimum_tip_object_distance_m": 0.0231310007248673,
+          "threshold_m": 0.03,
+          "steps": 70
+        },
+        "grasp": {
+          "success": true,
+          "bilateral_contact_frames": 18,
+          "max_consecutive_bilateral_contact_frames": 18,
+          "required_consecutive_frames": 3,
+          "steps": 20
+        },
+        "lift": {
+          "success": true,
+          "peak_lift_m": 0.07743001872426337,
+          "end_lift_m": 0.07743001872426337,
+          "threshold_m": 0.02,
+          "steps": 19
+        },
+        "transport": {
+          "success": true,
+          "minimum_lift_m": 0.07714912571435462,
+          "required_minimum_lift_m": 0.015,
+          "final_xy_error_m": 0.014118661793051475,
+          "arrival_tolerance_m": 0.045,
+          "steps": 240
+        },
+        "place": {
+          "success": true,
+          "object_fully_in_box": true,
+          "final_object_speed_m_s": 9.707082523638667e-17,
+          "max_speed_m_s": 0.025,
+          "final_object_xyz": [
+            0.21829798767204198,
+            0.20698143529336224,
+            -0.009106744011298757
+          ],
+          "steps": 195
+        },
+        "retreat": {
+          "success": true,
+          "object_remained_in_box": true,
+          "final_object_speed_m_s": 4.801280053871874e-17,
+          "final_gripper_object_clearance_m": 0.22958496255860059,
+          "required_clearance_m": 0.12,
+          "steps": 180
+        }
+      },
+      "quality_gates": {
+        "stable_hold_3s": {
+          "success": true,
+          "duration_seconds": 3.0,
+          "required_seconds": 3.0,
+          "minimum_lift_m": 0.07716679735240937,
+          "required_lift_m": 0.02,
+          "bilateral_contact_fraction": 1.0
+        }
+      },
+      "environment_success_detector": true,
+      "final_object_pose": [
+        0.21829798767204198,
+        0.20698143529336224,
+        -0.009106744011298752,
+        0.9222648861561838,
+        2.954063873196194e-17,
+        4.6890189999863865e-17,
+        0.3865585075552216
+      ],
+      "total_steps": 814,
+      "duration_seconds": 27.133333333333333,
+      "trial_index": 3
+    },
+    {
+      "seed": 104,
+      "success": true,
+      "mode": "SCRIPTED_PICK_HOLD_PLACE_BOX_EXPERT",
+      "policy_model": false,
+      "uses_ground_truth_for_reference_controller": true,
+      "object_teleport_after_reset": false,
+      "weld_or_constraint_grasp": false,
+      "source_episode": 68,
+      "object_initial_xyz": [
+        0.29950736859518345,
+        0.016662917046775447,
+        -0.015
+      ],
+      "stages": {
+        "approach": {
+          "success": true,
+          "minimum_tip_object_distance_m": 0.02507611623277638,
+          "threshold_m": 0.03,
+          "steps": 70
+        },
+        "grasp": {
+          "success": true,
+          "bilateral_contact_frames": 18,
+          "max_consecutive_bilateral_contact_frames": 18,
+          "required_consecutive_frames": 3,
+          "steps": 20
+        },
+        "lift": {
+          "success": true,
+          "peak_lift_m": 0.07888562367325316,
+          "end_lift_m": 0.07888562367325316,
+          "threshold_m": 0.02,
+          "steps": 19
+        },
+        "transport": {
+          "success": true,
+          "minimum_lift_m": 0.07864918380560827,
+          "required_minimum_lift_m": 0.015,
+          "final_xy_error_m": 0.014650985450534402,
+          "arrival_tolerance_m": 0.045,
+          "steps": 240
+        },
+        "place": {
+          "success": true,
+          "object_fully_in_box": true,
+          "final_object_speed_m_s": 1.4622008689374385e-16,
+          "max_speed_m_s": 0.025,
+          "final_object_xyz": [
+            0.21778261385361994,
+            0.20597796753622824,
+            -0.00910674401129873
+          ],
+          "steps": 195
+        },
+        "retreat": {
+          "success": true,
+          "object_remained_in_box": true,
+          "final_object_speed_m_s": 3.6289043261526875e-17,
+          "final_gripper_object_clearance_m": 0.22880623009904485,
+          "required_clearance_m": 0.12,
+          "steps": 180
+        }
+      },
+      "quality_gates": {
+        "stable_hold_3s": {
+          "success": true,
+          "duration_seconds": 3.0,
+          "required_seconds": 3.0,
+          "minimum_lift_m": 0.07861793239417622,
+          "required_lift_m": 0.02,
+          "bilateral_contact_fraction": 1.0
+        }
+      },
+      "environment_success_detector": true,
+      "final_object_pose": [
+        0.21778261385361994,
+        0.20597796753622824,
+        -0.009106744011298734,
+        0.9309656635314612,
+        -4.3487121648457063e-17,
+        -1.0423235592880003e-18,
+        0.36510674237190793
+      ],
+      "total_steps": 814,
+      "duration_seconds": 27.133333333333333,
+      "trial_index": 4
+    },
+    {
+      "seed": 105,
+      "success": true,
+      "mode": "SCRIPTED_PICK_HOLD_PLACE_BOX_EXPERT",
+      "policy_model": false,
+      "uses_ground_truth_for_reference_controller": true,
+      "object_teleport_after_reset": false,
+      "weld_or_constraint_grasp": false,
+      "source_episode": 68,
+      "object_initial_xyz": [
+        0.3000940176612545,
+        0.016852414200035297,
+        -0.015
+      ],
+      "stages": {
+        "approach": {
+          "success": true,
+          "minimum_tip_object_distance_m": 0.023927327604428457,
+          "threshold_m": 0.03,
+          "steps": 70
+        },
+        "grasp": {
+          "success": true,
+          "bilateral_contact_frames": 18,
+          "max_consecutive_bilateral_contact_frames": 18,
+          "required_consecutive_frames": 3,
+          "steps": 20
+        },
+        "lift": {
+          "success": true,
+          "peak_lift_m": 0.07955466272464463,
+          "end_lift_m": 0.07955466272464463,
+          "threshold_m": 0.02,
+          "steps": 19
+        },
+        "transport": {
+          "success": true,
+          "minimum_lift_m": 0.07915822540511813,
+          "required_minimum_lift_m": 0.015,
+          "final_xy_error_m": 0.015115418541749647,
+          "arrival_tolerance_m": 0.045,
+          "steps": 240
+        },
+        "place": {
+          "success": true,
+          "object_fully_in_box": true,
+          "final_object_speed_m_s": 9.4474839856178e-17,
+          "max_speed_m_s": 0.025,
+          "final_object_xyz": [
+            0.21752970369788333,
+            0.2062467017003379,
+            -0.009106744011298764
+          ],
+          "steps": 195
+        },
+        "retreat": {
+          "success": true,
+          "object_remained_in_box": true,
+          "final_object_speed_m_s": 9.698126562094706e-17,
+          "final_gripper_object_clearance_m": 0.2289326100580794,
+          "required_clearance_m": 0.12,
+          "steps": 180
+        }
+      },
+      "quality_gates": {
+        "stable_hold_3s": {
+          "success": true,
+          "duration_seconds": 3.0,
+          "required_seconds": 3.0,
+          "minimum_lift_m": 0.07928691556769206,
+          "required_lift_m": 0.02,
+          "bilateral_contact_fraction": 1.0
+        }
+      },
+      "environment_success_detector": true,
+      "final_object_pose": [
+        0.21752970369788333,
+        0.2062467017003379,
+        -0.00910674401129876,
+        0.9306764714476957,
+        6.418171808121227e-17,
+        -3.965184407652546e-17,
+        0.3658432799624247
+      ],
+      "total_steps": 814,
+      "duration_seconds": 27.133333333333333,
+      "trial_index": 5
+    },
+    {
+      "seed": 106,
+      "success": true,
+      "mode": "SCRIPTED_PICK_HOLD_PLACE_BOX_EXPERT",
+      "policy_model": false,
+      "uses_ground_truth_for_reference_controller": true,
+      "object_teleport_after_reset": false,
+      "weld_or_constraint_grasp": false,
+      "source_episode": 68,
+      "object_initial_xyz": [
+        0.2993896060394981,
+        0.017445007057560715,
+        -0.015
+      ],
+      "stages": {
+        "approach": {
+          "success": true,
+          "minimum_tip_object_distance_m": 0.02356830738152866,
+          "threshold_m": 0.03,
+          "steps": 70
+        },
+        "grasp": {
+          "success": true,
+          "bilateral_contact_frames": 18,
+          "max_consecutive_bilateral_contact_frames": 18,
+          "required_consecutive_frames": 3,
+          "steps": 20
+        },
+        "lift": {
+          "success": true,
+          "peak_lift_m": 0.07771211731311385,
+          "end_lift_m": 0.07771211731311385,
+          "threshold_m": 0.02,
+          "steps": 19
+        },
+        "transport": {
+          "success": true,
+          "minimum_lift_m": 0.07739042093863453,
+          "required_minimum_lift_m": 0.015,
+          "final_xy_error_m": 0.013928094499904462,
+          "arrival_tolerance_m": 0.045,
+          "steps": 240
+        },
+        "place": {
+          "success": true,
+          "object_fully_in_box": true,
+          "final_object_speed_m_s": 1.021068130275565e-16,
+          "max_speed_m_s": 0.025,
+          "final_object_xyz": [
+            0.21828632211403223,
+            0.2068388989876799,
+            -0.009106744011298741
+          ],
+          "steps": 195
+        },
+        "retreat": {
+          "success": true,
+          "object_remained_in_box": true,
+          "final_object_speed_m_s": 2.6771253625001357e-17,
+          "final_gripper_object_clearance_m": 0.2294936316765979,
+          "required_clearance_m": 0.12,
+          "steps": 180
+        }
+      },
+      "quality_gates": {
+        "stable_hold_3s": {
+          "success": true,
+          "duration_seconds": 3.0,
+          "required_seconds": 3.0,
+          "minimum_lift_m": 0.0774472870198783,
+          "required_lift_m": 0.02,
+          "bilateral_contact_fraction": 1.0
+        }
+      },
+      "environment_success_detector": true,
+      "final_object_pose": [
+        0.21828632211403223,
+        0.2068388989876799,
+        -0.009106744011298738,
+        0.9216844312321637,
+        3.1009014539455247e-17,
+        2.8381936336781277e-17,
+        0.3879404712378469
+      ],
+      "total_steps": 814,
+      "duration_seconds": 27.133333333333333,
+      "trial_index": 6
+    },
+    {
+      "seed": 107,
+      "success": true,
+      "mode": "SCRIPTED_PICK_HOLD_PLACE_BOX_EXPERT",
+      "policy_model": false,
+      "uses_ground_truth_for_reference_controller": true,
+      "object_teleport_after_reset": false,
+      "weld_or_constraint_grasp": false,
+      "source_episode": 68,
+      "object_initial_xyz": [
+        0.29933088424626453,
+        0.017353430310723304,
+        -0.015
+      ],
+      "stages": {
+        "approach": {
+          "success": true,
+          "minimum_tip_object_distance_m": 0.02371401111020807,
+          "threshold_m": 0.03,
+          "steps": 70
+        },
+        "grasp": {
+          "success": true,
+          "bilateral_contact_frames": 18,
+          "max_consecutive_bilateral_contact_frames": 18,
+          "required_consecutive_frames": 3,
+          "steps": 20
+        },
+        "lift": {
+          "success": true,
+          "peak_lift_m": 0.07845485161717479,
+          "end_lift_m": 0.07845485161717479,
+          "threshold_m": 0.02,
+          "steps": 19
+        },
+        "transport": {
+          "success": true,
+          "minimum_lift_m": 0.07821830900110027,
+          "required_minimum_lift_m": 0.015,
+          "final_xy_error_m": 0.01436638725072898,
+          "arrival_tolerance_m": 0.045,
+          "steps": 240
+        },
+        "place": {
+          "success": true,
+          "object_fully_in_box": true,
+          "final_object_speed_m_s": 9.017057179616998e-17,
+          "max_speed_m_s": 0.025,
+          "final_object_xyz": [
+            0.21801279121612108,
+            0.20710019048174755,
+            -0.009106744011298757
+          ],
+          "steps": 195
+        },
+        "retreat": {
+          "success": true,
+          "object_remained_in_box": true,
+          "final_object_speed_m_s": 7.353839422515014e-17,
+          "final_gripper_object_clearance_m": 0.22960048433605118,
+          "required_clearance_m": 0.12,
+          "steps": 180
+        }
+      },
+      "quality_gates": {
+        "stable_hold_3s": {
+          "success": true,
+          "duration_seconds": 3.0,
+          "required_seconds": 3.0,
+          "minimum_lift_m": 0.07819101647789302,
+          "required_lift_m": 0.02,
+          "bilateral_contact_fraction": 1.0
+        }
+      },
+      "environment_success_detector": true,
+      "final_object_pose": [
+        0.21801279121612108,
+        0.20710019048174755,
+        -0.009106744011298752,
+        0.9228333284830245,
+        -3.727831746625145e-17,
+        -3.0542886435988303e-17,
+        0.3851994909666176
+      ],
+      "total_steps": 814,
+      "duration_seconds": 27.133333333333333,
+      "trial_index": 7
+    },
+    {
+      "seed": 108,
+      "success": true,
+      "mode": "SCRIPTED_PICK_HOLD_PLACE_BOX_EXPERT",
+      "policy_model": false,
+      "uses_ground_truth_for_reference_controller": true,
+      "object_teleport_after_reset": false,
+      "weld_or_constraint_grasp": false,
+      "source_episode": 68,
+      "object_initial_xyz": [
+        0.3001226139084371,
+        0.017286826269393853,
+        -0.015
+      ],
+      "stages": {
+        "approach": {
+          "success": true,
+          "minimum_tip_object_distance_m": 0.02312758309995344,
+          "threshold_m": 0.03,
+          "steps": 70
+        },
+        "grasp": {
+          "success": true,
+          "bilateral_contact_frames": 18,
+          "max_consecutive_bilateral_contact_frames": 18,
+          "required_consecutive_frames": 3,
+          "steps": 20
+        },
+        "lift": {
+          "success": true,
+          "peak_lift_m": 0.07927442394925482,
+          "end_lift_m": 0.07927442394925482,
+          "threshold_m": 0.02,
+          "steps": 19
+        },
+        "transport": {
+          "success": true,
+          "minimum_lift_m": 0.0790397259483071,
+          "required_minimum_lift_m": 0.015,
+          "final_xy_error_m": 0.014674588684644831,
+          "arrival_tolerance_m": 0.045,
+          "steps": 240
+        },
+        "place": {
+          "success": true,
+          "object_fully_in_box": true,
+          "final_object_speed_m_s": 1.5815217832407415e-16,
+          "max_speed_m_s": 0.025,
+          "final_object_xyz": [
+            0.21777898798878567,
+            0.20596791302393405,
+            -0.00910674401129873
+          ],
+          "steps": 195
+        },
+        "retreat": {
+          "success": true,
+          "object_remained_in_box": true,
+          "final_object_speed_m_s": 9.353696378490015e-17,
+          "final_gripper_object_clearance_m": 0.22880798377373,
+          "required_clearance_m": 0.12,
+          "steps": 180
+        }
+      },
+      "quality_gates": {
+        "stable_hold_3s": {
+          "success": true,
+          "duration_seconds": 3.0,
+          "required_seconds": 3.0,
+          "minimum_lift_m": 0.07900500864620827,
+          "required_lift_m": 0.02,
+          "bilateral_contact_fraction": 1.0
+        }
+      },
+      "environment_success_detector": true,
+      "final_object_pose": [
+        0.21777898798878567,
+        0.20596791302393405,
+        -0.009106744011298741,
+        0.9309572779910931,
+        4.7725577401493955e-17,
+        4.889865866601076e-17,
+        0.36512812347916335
+      ],
+      "total_steps": 814,
+      "duration_seconds": 27.133333333333333,
+      "trial_index": 8
+    },
+    {
+      "seed": 109,
+      "success": true,
+      "mode": "SCRIPTED_PICK_HOLD_PLACE_BOX_EXPERT",
+      "policy_model": false,
+      "uses_ground_truth_for_reference_controller": true,
+      "object_teleport_after_reset": false,
+      "weld_or_constraint_grasp": false,
+      "source_episode": 68,
+      "object_initial_xyz": [
+        0.299673104852805,
+        0.01727125765725662,
+        -0.015
+      ],
+      "stages": {
+        "approach": {
+          "success": true,
+          "minimum_tip_object_distance_m": 0.023382978748124488,
+          "threshold_m": 0.03,
+          "steps": 70
+        },
+        "grasp": {
+          "success": true,
+          "bilateral_contact_frames": 18,
+          "max_consecutive_bilateral_contact_frames": 18,
+          "required_consecutive_frames": 3,
+          "steps": 20
+        },
+        "lift": {
+          "success": true,
+          "peak_lift_m": 0.07832273546491897,
+          "end_lift_m": 0.07832273546491897,
+          "threshold_m": 0.02,
+          "steps": 19
+        },
+        "transport": {
+          "success": true,
+          "minimum_lift_m": 0.0780575893965782,
+          "required_minimum_lift_m": 0.015,
+          "final_xy_error_m": 0.014199905537078204,
+          "arrival_tolerance_m": 0.045,
+          "steps": 240
+        },
+        "place": {
+          "success": true,
+          "object_fully_in_box": true,
+          "final_object_speed_m_s": 9.062825046431894e-17,
+          "max_speed_m_s": 0.025,
+          "final_object_xyz": [
+            0.21816182949155682,
+            0.20704299282836994,
+            -0.00910674401129875
+          ],
+          "steps": 195
+        },
+        "retreat": {
+          "success": true,
+          "object_remained_in_box": true,
+          "final_object_speed_m_s": 1.3517815904726137e-16,
+          "final_gripper_object_clearance_m": 0.22960070149860948,
+          "required_clearance_m": 0.12,
+          "steps": 180
+        }
+      },
+      "quality_gates": {
+        "stable_hold_3s": {
+          "success": true,
+          "duration_seconds": 3.0,
+          "required_seconds": 3.0,
+          "minimum_lift_m": 0.07805931906949012,
+          "required_lift_m": 0.02,
+          "bilateral_contact_fraction": 1.0
+        }
+      },
+      "environment_success_detector": true,
+      "final_object_pose": [
+        0.21816182949155682,
+        0.20704299282836994,
+        -0.009106744011298745,
+        0.922498422722711,
+        -1.0164208399696807e-16,
+        -1.4956952870090644e-16,
+        0.38600085501732984
+      ],
+      "total_steps": 814,
+      "duration_seconds": 27.133333333333333,
+      "trial_index": 9
+    }
+  ]
+}
