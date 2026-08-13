@@ -1,0 +1,11 @@
+{
+  "mujoco_menagerie": {
+    "url": "https://github.com/google-deepmind/mujoco_menagerie.git",
+    "commit": "da76818e269b82289eba39808e2fb91d679d6994"
+  },
+  "lerobot": {
+    "path": "/mnt/sdb/shize/projects/all_code_hsz/7-28/so101_vla/src/lerobot",
+    "commit": "30da8e687a6dfc617fcd94afc367ac7071c376ce"
+  },
+  "mujoco_python": "3.3.7"
+}

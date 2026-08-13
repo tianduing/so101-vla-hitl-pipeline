@@ -1,0 +1,26 @@
+compute_environment: LOCAL_MACHINE
+distributed_type: FSDP
+mixed_precision: bf16
+num_machines: 1
+num_processes: 4
+use_cpu: false
+gpu_ids: all
+machine_rank: 0
+main_training_function: main
+rdzv_backend: static
+same_network: true
+fsdp_config:
+  fsdp_version: 1
+  fsdp_sharding_strategy: FULL_SHARD
+  # SmolVLA directly reads the expert layer projections inside its custom
+  # attention forward. Root-only wrapping keeps the full expert materialized
+  # for that forward while still FULL_SHARDing it between iterations.
+  fsdp_auto_wrap_policy: NO_WRAP
+  fsdp_use_orig_params: true
+  fsdp_state_dict_type: FULL_STATE_DICT
+  fsdp_backward_prefetch_policy: BACKWARD_PRE
+  fsdp_forward_prefetch: false
+  fsdp_sync_module_states: true
+  # Frozen bf16 VLM stays replicated; only the fp32 trainable action expert/state
+  # projection are sharded. This avoids mixed-dtype flattening in FSDP1.
+  fsdp_ignored_modules: model\.vlm_with_expert\.vlm

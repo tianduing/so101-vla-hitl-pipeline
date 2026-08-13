@@ -1,0 +1,19 @@
+semantics: absolute_joint_position
+dataset_unit: degree
+mujoco_unit: radian
+evidence:
+  - Dataset feature names exactly match all six Menagerie joint and actuator names.
+  - Dataset raw values are calibrated servo coordinates; they are not assumed to equal the MJCF joint angles one-for-one.
+  - Pan/lift/elbow/flex scales and offsets are fitted from the released 35-point table and 35-point block-top calibration grids by SO-101 forward kinematics.
+  - The fitted calibration has 4.35 mm XY RMSE and 2.06 mm relative-height RMSE on those released points, with no fitted-range joint clipping.
+  - Gripper endpoints map the released OPEN=65.7 to the Menagerie 41.7-degree open pickup aperture and CLOSE=40.0 to its -10-degree closed limit.
+  - Wrist roll has insufficient variation in the released grids, so its prior orientation alignment is retained.
+joints:
+  shoulder_pan: {scale: 0.017453292519943295, raw_scale: 1.171, offset_deg: 0.3956044, sign: 1, raw_range: [-18.681, 20.952], mjcf_range: [-1.91986, 1.91986]}
+  shoulder_lift: {scale: 0.017453292519943295, raw_scale: 0.756, offset_deg: -68.014, sign: 1, raw_range: [-4.88, 148.440], mjcf_range: [-1.7453293, 1.7453293]}
+  elbow_flex: {scale: 0.017453292519943295, raw_scale: 0.867, offset_deg: 22.316, sign: 1, raw_range: [-49.891, 78.290], mjcf_range: [-1.69, 1.69]}
+  wrist_flex: {scale: 0.017453292519943295, raw_scale: 1.054, offset_deg: 32.174, sign: 1, raw_range: [8.835, 48.022], mjcf_range: [-1.658063, 1.658063]}
+  wrist_roll: {scale: 0.017453292519943295, raw_scale: 1.0, offset_deg: 186.5585072, sign: 1, raw_range: [-97.187, -95.340], mjcf_range: [-2.7438473, 2.7438473]}
+  gripper: {scale: 0.017453292519943295, raw_scale: 2.011673, offset_deg: -90.4669, sign: 1, raw_range: [40.0, 65.7], mjcf_range: [-0.174533, 1.7453292]}
+clip_to_mjcf_range: true
+max_raw_action_delta_deg: 6.0

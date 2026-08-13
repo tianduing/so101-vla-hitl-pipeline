@@ -1,0 +1,46 @@
+{
+  "validated_at": "2026-08-12T15:45:07+08:00",
+  "hardware": "4 x NVIDIA GeForce RTX 4090",
+  "strategy": {
+    "framework": "Hugging Face Accelerate + PyTorch FSDP1",
+    "sharding": "FULL_SHARD",
+    "deepspeed_equivalent": "ZeRO Stage 3",
+    "mixed_precision": "bf16",
+    "processes": 4
+  },
+  "tests": [
+    {
+      "policy": "act",
+      "output": "outputs/train/20260812_153722_act_smoke_fsdp4",
+      "steps": 2,
+      "per_gpu_batch_size": 1,
+      "effective_batch_size": 4,
+      "reported_peak_gpu_memory_gb": 0.37,
+      "checkpoint_saved": true,
+      "offline_inference_verified": true
+    },
+    {
+      "policy": "diffusion",
+      "output": "outputs/train/20260812_153816_diffusion_smoke_fsdp4",
+      "steps": 2,
+      "per_gpu_batch_size": 1,
+      "effective_batch_size": 4,
+      "reported_peak_gpu_memory_gb": 1.38,
+      "checkpoint_saved": true,
+      "offline_inference_verified": true
+    },
+    {
+      "policy": "smolvla",
+      "output": "outputs/train/20260812_154425_smolvla_smoke_fsdp4",
+      "steps": 2,
+      "per_gpu_batch_size": 1,
+      "effective_batch_size": 4,
+      "reported_peak_gpu_memory_gb": 1.78,
+      "checkpoint_saved": true,
+      "offline_inference_verified": true,
+      "special_handling": "Frozen VLM replicated; trainable action expert root-wrapped with FULL_SHARD; mixed trainable master weights normalized to fp32 while bf16 compute remains enabled."
+    }
+  ],
+  "inference_report": "outputs/reports/fsdp4_checkpoint_inference.json",
+  "scope": "Engineering validation only; these 2-step checkpoints have no robot success-rate claim."
+}

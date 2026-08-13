@@ -1,0 +1,24 @@
+diff --git a/src/lerobot/scripts/lerobot_train.py b/src/lerobot/scripts/lerobot_train.py
+index 4ec0e39..b5738c7 100755
+--- a/src/lerobot/scripts/lerobot_train.py
++++ b/src/lerobot/scripts/lerobot_train.py
+@@ -343,6 +343,20 @@ def train(cfg: TrainPipelineConfig, accelerator=None):
+     # Wait for all processes to finish model creation before continuing
+     accelerator.wait_for_everyone()
+
++    # FSDP1 flattens parameters within each wrapped module and requires a
++    # uniform storage dtype. Some pretrained policies (notably SmolVLA) mix
++    # bf16 pretrained weights with freshly-created fp32 projections inside a
++    # trainable transformer block. Keep trainable master weights uniformly
++    # fp32; Accelerate's mixed-precision policy still runs compute in bf16.
++    if accelerator.distributed_type == DistributedType.FSDP:
++        trainable_dtypes = {param.dtype for param in policy.parameters() if param.requires_grad}
++        if len(trainable_dtypes) > 1:
++            if is_main_process:
++                logging.info("Normalizing mixed-dtype trainable parameters to fp32 for FSDP")
++            for param in policy.parameters():
++                if param.requires_grad and param.dtype != torch.float32:
++                    param.data = param.data.to(torch.float32)
++
+     active_cfg = cfg.trainable_config
+     processor_pretrained_path = active_cfg.pretrained_path

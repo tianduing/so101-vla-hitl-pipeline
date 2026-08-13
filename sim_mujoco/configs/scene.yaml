@@ -1,0 +1,41 @@
+scene_xml: src/so101_mujoco/assets/scene_project.xml
+physics_timestep: 0.005
+control_hz: 30
+output_fps: 30
+render_width: 640
+render_height: 480
+task_text: grasp the green block
+initial_state_degrees: [-0.3956044, -3.2967033, 78.1977997, 17.2747250, -95.7802200, 65.2941208]
+object:
+  color: green
+  # Released top/table calibrations imply 44 mm height; scene pixels and the
+  # observed 57.6-degree stalled gripper state imply about 50 mm XY width.
+  size_m: [0.050, 0.050, 0.044]
+  mass_kg: 0.055
+  # Base pose is combined with the seeded +/-25 mm placement distribution.
+  # Seed 42 reproduces episode-0 calibration at approximately (0.252, 0.006).
+  initial_xyz: [0.2383, 0.0091, -0.015]
+  random_xy_m: 0.025
+target:
+  center_xyz: [0.22, 0.20, -0.028]
+  half_extent_xy_m: [0.05, 0.05]
+success:
+  # Require a real 20 mm lift above each trial's settled reset height. This is
+  # stricter than clearing the table and is attainable by the released real
+  # successful trajectory (measured peak lift ~35 mm in the calibrated sim).
+  pick_lift_m: 0.020
+  pick_height_m: 0.022
+  hold_seconds: 0.25
+  place_max_speed_m_s: 0.08
+  final_height_range_m: [-0.028, 0.012]
+limits:
+  max_raw_action_delta_deg: 6.0
+  max_episode_seconds: 30
+seed: 42
+visual_match:
+  robot_white: true
+  hide_policy_group_4: true
+physics_match:
+  # The source SO-101 used a different lightweight camera mount; Menagerie's
+  # generic camera-box colliders self-collide with the shoulder for this path.
+  disable_camera_mount_collisions: true

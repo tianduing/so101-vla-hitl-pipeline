@@ -32,3 +32,11 @@ manifests/artifact_SHA256SUMS
 *.mp4
 *.pyc
 __pycache__/
+
+# MuJoCo runtime artifacts are regenerated locally and can exceed gigabytes.
+sim_mujoco/.sim_env/
+sim_mujoco/.pytest_cache/
+sim_mujoco/outputs/
+sim_mujoco/runs/
+sim_mujoco/vendor/
+sim_mujoco/reports/system_audit.txt

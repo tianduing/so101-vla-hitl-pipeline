@@ -30,7 +30,11 @@ def verify(policy_path: Path, dataset: LeRobotDataset) -> dict[str, object]:
     config.device = "cpu"
     rename_map = {"observation.images.scene": "observation.images.camera1"} if config.type == "smolvla" else None
     policy = make_policy(config, ds_meta=dataset.meta, rename_map=rename_map)
-    preprocessor, postprocessor = make_pre_post_processors(config, pretrained_path=policy_path)
+    preprocessor, postprocessor = make_pre_post_processors(
+        config,
+        pretrained_path=policy_path,
+        preprocessor_overrides={"device_processor": {"device": "cpu"}},
+    )
     policy.eval()
     sample = dict(dataset[0])
     with torch.inference_mode():

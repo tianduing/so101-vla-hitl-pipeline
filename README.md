@@ -14,9 +14,13 @@
 | 公开真机评测 | 50 trials，31 success，成功率 62% |
 | 风险模型 | 50 个 rollout / 6,916 frames；10-episode 小留出集帧级 85.7%、episode 级 100%，仅证明链路可运行 |
 | 安全触发 | 连续低价值、关节越界、动作振荡三类 HITL guard，5 个自动化测试通过 |
-| 正式训练 | 100k-step 配置和空闲 GPU 等待器已就绪；是否完成须以 `outputs/train` checkpoint 为准 |
+| 正式训练 | ACT、Diffusion、SmolVLA 的 100k checkpoint 均已生成；ACT 四卡 FSDP 亦完成 100k，但 checkpoint 存在不等于真机成功率已验证 |
 
-机器可读证据位于 [`outputs/reports`](outputs/reports)，复现步骤见 [docs/REPRODUCING.md](docs/REPRODUCING.md)，62% 的原因与改进方案见 [docs/OPTIMIZATION_ROADMAP.md](docs/OPTIMIZATION_ROADMAP.md)。
+机器可读证据位于 [`outputs/reports`](outputs/reports)。如果不清楚 1-step、62% 和 85.7% 的区别，先阅读 [通俗指标说明](docs/TRAINING_AND_METRICS_EXPLAINED.md)；复现步骤见 [docs/REPRODUCING.md](docs/REPRODUCING.md)，62% 的原因与改进方案见 [docs/OPTIMIZATION_ROADMAP.md](docs/OPTIMIZATION_ROADMAP.md)。
+
+四卡 `FULL_SHARD`（等价 ZeRO-3）训练和真实/离线动画说明见 [docs/MULTI_GPU_AND_VISUALIZATION.md](docs/MULTI_GPU_AND_VISUALIZATION.md)。ACT、Diffusion、SmolVLA 已完成4卡2-step实测、checkpoint汇聚和单进程离线重载。
+
+MuJoCo 真物理仿真、真实轨迹回放、脚本专家和 checkpoint 闭环动画工程位于 [sim_mujoco/README.md](sim_mujoco/README.md)。当前开发位置上的 ACT 三专家为 9/10；单 ACT 在 20 个未见位置上为 9/20；RGB 视觉示范检索恢复系统在同一批未见位置上为 17/20（85%）。三者口径不同，完整排障过程见 [从近似 0% 到完整系统 85% 的学习手册](problem_records/ROBOT-GRASP-001_从0到85准确率学习手册/README.md)。
 
 ## 一键复现
 
@@ -60,13 +64,14 @@ cp configs/project.env.example configs/project.env
 
 ## 正式训练
 
-默认 full 配置为 100,000 steps、每 20,000 steps 保存一次，ACT → Diffusion → SmolVLA 顺序执行：
+推荐的四卡 full 配置为每个策略 100,000 steps、每 20,000 steps 保存一次，ACT → Diffusion → SmolVLA 顺序执行：
 
 ```bash
-make full
+make fsdp-full
+make status
 ```
 
-`run_when_gpu_free.sh` 只选择空闲显存达到 `GPU_MIN_FREE_MIB`（默认 18 GiB）的 GPU，不杀进程、不抢占其他用户任务。可用 `STEPS`、`BATCH_SIZE`、`NUM_WORKERS` 覆盖训练参数。每次运行写入独立时间戳目录，并记录命令、依赖版本、GPU 信息和权重哈希。
+`run_distributed_when_ready.sh` 动态选择四张满足剩余显存和利用率阈值的 GPU，不杀进程、不抢占其他用户任务。训练采用 FSDP `FULL_SHARD`（对应 ZeRO-3 的参数、梯度和优化器状态分片）。可用 `STEPS`、各策略的 `*_BATCH_PER_GPU` 和 `NUM_WORKERS` 覆盖训练参数。每次运行写入独立时间戳目录，并记录命令、依赖版本、GPU 信息和权重哈希。当前工作区已有 ACT、Diffusion、SmolVLA 各 100k 的最终 checkpoint；由于权重被 `.gitignore` 排除，克隆仓库后需重新训练或从已校验的内部制品库恢复。
 
 ## 接入实验室数据
 
@@ -98,9 +103,11 @@ cp configs/robot/so101_controller.example.env configs/robot/so101_controller.env
 configs/            训练与控制机配置示例
 scripts/            下载、审计、训练、验证、HITL 与报告脚本
 tests/              HITL guard 自动化测试
+sim_mujoco/         MuJoCo 闭环推理、物理数据构建、评估和恢复控制器
+problem_records/    从现象到根因、修复和复现的排障知识库
 outputs/reports/    本次已验证的轻量 JSON 结果
 manifests/          锁定提交、依赖快照和环境验证
 data/ models/ ...   运行时自动生成，全部不提交
 ```
 
-上游版本锁定在 [`manifests/git_commits.txt`](manifests/git_commits.txt)。本工程不修改 LeRobot 上游源码。
+上游版本锁定在 [`manifests/git_commits.txt`](manifests/git_commits.txt)。四卡 SmolVLA 需要一个可审计、幂等的本地 FSDP 兼容补丁，补丁保存在 [`patches`](patches)，并由 bootstrap 自动应用。

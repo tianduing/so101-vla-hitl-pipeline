@@ -1,6 +1,6 @@
 SHELL := /usr/bin/env bash
 
-.PHONY: bootstrap download extract dataset risk verify test smoke full report status pipeline
+.PHONY: bootstrap download extract dataset risk verify test smoke full fsdp-smoke fsdp-full report viz-animation viz-rrd status pipeline
 
 bootstrap:
 	./scripts/bootstrap.sh
@@ -31,12 +31,26 @@ full:
 	source ./env.sh && ./scripts/run_when_gpu_free.sh ./scripts/train_policies.sh full all
 	source ./env.sh && ./scripts/finalize_reports.sh
 
+fsdp-smoke:
+	source ./env.sh && FSDP_NUM_GPUS=4 GPU_IDS=0,1,2,3 ./scripts/train_policies_fsdp.sh smoke all
+
+fsdp-full:
+	source ./env.sh && ./scripts/run_distributed_when_ready.sh ./scripts/train_policies_fsdp.sh full all
+
+viz-animation:
+	source ./env.sh && ./scripts/visualize_episode.sh animation
+
+viz-rrd:
+	source ./env.sh && ./scripts/visualize_episode.sh rrd 0
+
 report:
 	source ./env.sh && ./scripts/finalize_reports.sh
 
 status:
-	systemctl --user status so101-vla-full-train --no-pager -l || true
-	tail -n 20 logs/system/gpu_wait.log
+	systemctl --user show so101-vla-fsdp4-full-train --property=ActiveState,SubState,Result,ExecMainStartTimestamp --no-pager || true
+	systemctl --user show so101-vla-fsdp4-postprocess --property=ActiveState,SubState,Result --no-pager || true
+	tail -n 10 logs/system/fsdp_gpu_wait.log 2>/dev/null || true
+	find outputs/train/.run_metadata -type f -name train.log -print0 2>/dev/null | xargs -0 -r ls -1t | head -n 1 | xargs -r tail -n 5
 
 pipeline:
 	./scripts/run_pipeline.sh

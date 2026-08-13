@@ -1,0 +1,15 @@
+{
+  "resources": [
+    {
+      "name": "mujoco_menagerie",
+      "url": "https://github.com/google-deepmind/mujoco_menagerie.git",
+      "commit": "da76818e269b82289eba39808e2fb91d679d6994",
+      "target": "vendor/mujoco_menagerie",
+      "status": "DOWNLOADED"
+    },
+    {"name": "mujoco", "url": "https://pypi.org/project/mujoco/3.3.7/", "version": "3.3.7", "status": "INSTALLED"},
+    {"name": "PyOpenGL", "url": "https://pypi.org/project/PyOpenGL/3.1.10/", "version": "3.1.10", "status": "INSTALLED"},
+    {"name": "glfw", "url": "https://pypi.org/project/glfw/2.10.0/", "version": "2.10.0", "status": "INSTALLED"},
+    {"name": "resnet18", "url": "https://download.pytorch.org/models/resnet18-f37072fd.pth", "bytes": 46830571, "status": "CACHED"}
+  ]
+}

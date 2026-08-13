@@ -9,6 +9,7 @@ INSTALLER="$VLA_ROOT/downloads/installers/Miniforge3-Linux-x86_64.sh"
 PROXY_VALUE="${HTTPS_PROXY:-${https_proxy:-}}"
 
 "$SCRIPT_DIR/fetch_sources.sh"
+"$SCRIPT_DIR/apply_local_patches.sh"
 
 if [[ ! -x "$MINIFORGE/bin/mamba" ]]; then
   mkdir -p "$(dirname "$INSTALLER")"

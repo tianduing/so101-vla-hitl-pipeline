@@ -1,0 +1,11 @@
+type: absolute
+source: policy action in calibrated SO-101 degrees
+destination: MuJoCo position actuator target in radians
+names: [shoulder_pan, shoulder_lift, elbow_flex, wrist_flex, wrist_roll, gripper]
+transform: ctrl = clip(deg2rad(sign * raw_scale * action + calibration_offset_deg), actuator_ctrlrange)
+rate_limit_degrees_per_control_step: 6.0
+invalid_action: terminate
+gripper:
+  direction: increasing raw degrees increases MuJoCo joint angle
+  evidence: released OPEN=65.7 and CLOSE=40.0 endpoints are mapped to measured Menagerie fingertip apertures
+  endpoint_mapping: raw 65.7 -> 41.7 deg (~72 mm tip distance); raw 40.0 -> -10 deg (~4 mm tip distance)
