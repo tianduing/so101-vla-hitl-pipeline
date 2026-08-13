@@ -154,9 +154,9 @@ bash sim_mujoco/scripts/run_rgb_retrieval_85_eval.sh
 
 程序只在初始 RGB 图像中找绿色像素，计算物块横向像素中心：
 
-\[
+$$
 x_c = \frac{1}{N}\sum_{i=1}^{N} x_i
-\]
+$$
 
 当 `x_c >= 195` 时选择主专家，否则选择辅助专家。这个路由不读取 MuJoCo 内部物块坐标，因此同一方法也可以接真实相机。
 
